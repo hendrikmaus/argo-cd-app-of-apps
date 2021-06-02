@@ -1,0 +1,19 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-profile
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "{{ .Values.syncWaves.istioProfile}}"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: istio-system
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: charts/istio-profile
+    repoURL: https://github.com/hendrikmaus/argo-cd-app-of-apps
+    targetRevision: HEAD

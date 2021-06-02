@@ -1,0 +1,15 @@
+---
+apiVersion: k3d.io/v1alpha2
+kind: Simple
+name: cluster-setup-experiment
+servers: 1
+agents: 2
+image: docker.io/rancher/k3s:v1.20.6-k3s1
+ports:
+  - port: 8085:80
+    nodeFilters:
+      - loadbalancer
+options:
+  k3d:
+    wait: true
+

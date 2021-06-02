@@ -1,0 +1,26 @@
+# Use helm3 compatible mode (needs --include-crds on helm template call)
+installCRDs: false
+
+global:
+  image:
+    tag: v2.0.1
+
+dex:
+  enabled: false
+
+server:
+  extraArgs:
+    - --insecure
+  ingress:
+    enabled: true
+  config:
+    repositories: |
+      - type: helm
+        url: https://charts.bitnami.com/bitnami
+        name: bitnami
+
+configs:
+  secret:
+    # password: admin
+    argocdServerAdminPassword: $2a$10$LAg0R9iPW616.gsfpIKq7OZauACeoCvNeJy6H6XPASq2vbptq8riS
+    argocdServerAdminPasswordMtime: "1970-01-01T00:00:00Z"

@@ -1,0 +1,14 @@
+# Default values for apps
+
+## Determine the order of rollout
+## The sync wave "-1" will be running before everything else
+syncWaves:
+  istioOperator: "0"
+  istioProfile: "1"
+
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/hendrikmaus/argo-cd-app-of-apps
+    targetRevision: HEAD
