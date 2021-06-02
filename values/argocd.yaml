@@ -18,6 +18,24 @@ server:
       - type: helm
         url: https://charts.bitnami.com/bitnami
         name: bitnami
+    # restore application health assessement
+    # see https://github.com/argoproj/argo-cd/issues/5146
+    #     https://github.com/argoproj/argo-cd/pull/6281/files
+    resource.customizations: |
+      argoproj.io/Application:
+        health.lua: |
+          hs = {}
+          hs.status = "Progressing"
+          hs.message = ""
+          if obj.status ~= nil then
+            if obj.status.health ~= nil then
+              hs.status = obj.status.health.status
+              if obj.status.health.message ~= nil then
+                hs.message = obj.status.health.message
+              end
+            end
+          end
+          return hs
 
 configs:
   secret:
