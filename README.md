@@ -1,4 +1,4 @@
-# Cluster Bootstrapping Experiment Using Argo CD, Apps-of-Apps and Sync Waves
+# Cluster Bootstrapping Experiment Using Argo CD, App-of-Apps and Sync Waves
 
 An experiment, running locally, to use the [App-of-Apps](https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/) pattern of Argo CD to provision a cluster (the same cluster in this case) while declaring dependencies between the apps using Sync Waves.
 
