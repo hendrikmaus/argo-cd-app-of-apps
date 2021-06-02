@@ -17,3 +17,5 @@ spec:
     path: manifests/charts/istio-operator
     repoURL: https://github.com/istio/istio
     targetRevision: HEAD
+  syncPolicy:
+    automated: {}
