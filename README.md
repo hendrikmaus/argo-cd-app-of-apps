@@ -33,3 +33,13 @@ Cleanup:
 just clean
 ```
 
+## Known Issues
+
+The health assessement of the `Application` resource was removed from Argo CD and has to be re-enabled using the `ConfigMap`.
+
+See:
+
+- https://github.com/argoproj/argo-cd/issues/5146
+- https://github.com/argoproj/argo-cd/pull/6281
+
+This experiment includes the patch.
