@@ -35,8 +35,9 @@ run:
 _pull-images:
   #!/usr/bin/env bash
   set -euo pipefail
-  ( docker pull quay.io/argoproj/argocd:${ARGO_CD_VERSION} ) &
-  ( docker pull redis:${ARGO_CD_REDIS_VERSION} ) &
+  ( docker pull "quay.io/argoproj/argocd:${ARGO_CD_VERSION}" ) &
+  ( docker pull "redis:${ARGO_CD_REDIS_VERSION}" ) &
+  # shellcheck disable=SC2046
   wait $(jobs -p)
 
 # create the k3d cluster, if it doesn't exist and import cached container images
@@ -47,14 +48,11 @@ _create-cluster:
     echo "Creating Kubernetes cluster ..."
     k3d cluster create {{cluster}} --config ./k3d-default.yaml
     # note: image imports CANNOT run in parallel
-    k3d image import quay.io/argoproj/argocd:${ARGO_CD_VERSION} --cluster {{cluster}}
-    k3d image import redis:${ARGO_CD_REDIS_VERSION} --cluster {{cluster}}
+    k3d image import "quay.io/argoproj/argocd:${ARGO_CD_VERSION}" --cluster {{cluster}}
+    k3d image import "redis:${ARGO_CD_REDIS_VERSION}" --cluster {{cluster}}
   else
     echo "Cluster already exists ... skip"
   fi
-
-  echo ""
-  echo "The cluster is ready to be observed (e.g. 'k9s -n all')"
 
 # apply the Argo CD chart to the cluster
 _apply-argo-cd:
@@ -69,10 +67,10 @@ _apply-argo-cd:
     --namespace argocd \
     --include-crds \
     --values ./values/argocd.yaml \
-    --set global.image.tag=${ARGO_CD_VERSION} \
-    --set redis.image.tag=${ARGO_CD_REDIS_VERSION} \
+    --set global.image.tag="${ARGO_CD_VERSION}" \
+    --set redis.image.tag="${ARGO_CD_REDIS_VERSION}" \
     --repo https://argoproj.github.io/argo-helm \
-    --version ${ARGO_CD_CHART_VERSION} \
+    --version "${ARGO_CD_CHART_VERSION}" \
     | kubectl --namespace argocd apply --filename -
 
 # wait for Argo CD to be rolled out
@@ -85,6 +83,7 @@ _wait-for-argo-cd:
   ( kubectl --namespace argocd rollout status deployment argocd-server --watch=true ) &
   ( kubectl --namespace argocd rollout status deployment argocd-redis --watch=true ) &
   
+  # shellcheck disable=SC2046
   wait $(jobs -p)
 
   echo ""
@@ -102,5 +101,5 @@ delete-apps:
 # teardown the experiment
 clean:
   k3d cluster delete {{cluster}}
-  rm ${KUBECONFIG}
+  rm "${KUBECONFIG}"
 
