@@ -7,14 +7,15 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  # Project description
   description: Some Cluster
-
-  # Allow manifests to deploy from any Git repos
   sourceRepos:
     - '*'
-
-  # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
     - namespace: '*'
       server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
