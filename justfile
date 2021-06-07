@@ -66,7 +66,7 @@ _apply-argo-cd:
   helm template argocd argo-cd \
     --namespace argocd \
     --include-crds \
-    --values ./values/argocd.yaml \
+    --values ./argo-cd.yaml \
     --set global.image.tag="${ARGO_CD_VERSION}" \
     --set redis.image.tag="${ARGO_CD_REDIS_VERSION}" \
     --repo https://argoproj.github.io/argo-helm \

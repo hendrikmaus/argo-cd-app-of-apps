@@ -13,7 +13,7 @@ An experiment, running locally, to use the [App-of-Apps](https://argoproj.github
 
 ## Configuration
 
-The configuration is done using [`.env`](./.env) and [`values/argocd.yaml`](./values/argocd.yaml).
+The configuration is done using [`.env`](./.env) and [`argo-cd.yaml`](argo-cd.yaml).
 
 ## Usage
 
