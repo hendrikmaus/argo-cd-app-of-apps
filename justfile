@@ -6,11 +6,30 @@ cluster := "cluster-setup-experiment"
 
 # runs the complete experiment; call 'clean' afterwards for teardown
 run:
+  #!/usr/bin/env bash
+  set -euo pipefail
   just _pull-images
   just _create-cluster 
   just _apply-argo-cd
   just _wait-for-argo-cd
+  echo ""
+  echo "Argo CD has been deployed, the next step will submit the app-of-apps"
+  echo "  open it in the browser as printed above to follow the progress."
+  echo ""
+  echo "Here is what you'll observe:"
+  echo " 1) an app called 'some-cluster' will appear"
+  echo " 2) next, the 'istio-operator' app will appear"
+  echo " 3) once the second app is synced, 'istio-profile' will appear"
+  echo ""
+  echo "You can repeat this process forward and backward using"
+  echo "  'just delete-apps' / 'just apply-apps'"
+  echo ""
+  echo "Press any key to continue or abort with ctrl+c"
+  # shellcheck disable=SC2162
+  read
   just apply-apps
+  echo ""
+  echo "You can cleanup using 'just clean' when you're done"
 
 # pulls images to the host; later they are imported into the k3d cluster
 _pull-images:
