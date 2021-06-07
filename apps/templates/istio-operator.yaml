@@ -14,8 +14,8 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
   source:
-    path: manifests/charts/istio-operator
-    repoURL: https://github.com/istio/istio
+    path: charts/istio-operator
+    repoURL: https://github.com/hendrikmaus/argo-cd-app-of-apps
     targetRevision: HEAD
   syncPolicy:
     automated: {}
