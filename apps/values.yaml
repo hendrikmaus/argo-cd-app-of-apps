@@ -12,3 +12,4 @@ spec:
   source:
     repoURL: https://github.com/hendrikmaus/argo-cd-app-of-apps
     targetRevision: HEAD
+  project: some-cluster # each cluster should have its own `AppProject`

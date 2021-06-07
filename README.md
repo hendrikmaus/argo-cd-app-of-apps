@@ -38,6 +38,7 @@ just clean
 ```txt
 .
 ├── app-of-apps.yaml                <-- defines a cluster; one would have one of these per cluster
+|── app-project.yaml                <-- each cluster should reside in its own Argo CD `AppProject`
 ├── apps                            <-- this chart contains the apps of a cluster including dependencies
 │  ├── Chart.yaml                         i.e. sync waves, hooks etc. (app-of-apps.yaml points to this chart)
 │  ├── templates

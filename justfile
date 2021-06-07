@@ -12,6 +12,7 @@ run:
   just _create-cluster 
   just _apply-argo-cd
   just _wait-for-argo-cd
+  just _apply-project
   echo ""
   echo "Argo CD has been deployed, the next step will submit the app-of-apps"
   echo "  open it in the browser as printed above to follow the progress."
@@ -89,6 +90,10 @@ _wait-for-argo-cd:
   echo ""
   echo "Open http://localhost:8085"
   echo "Login: admin admin"  
+
+# submit the `AppProject` resource to Argo CD
+_apply-project:
+  kubectl --namespace argocd apply --filename app-project.yaml
 
 # apply the app-of-apps
 apply-apps:

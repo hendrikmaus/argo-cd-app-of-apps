@@ -12,7 +12,7 @@ spec:
   destination:
     namespace: istio-system
     server: {{ .Values.spec.destination.server }}
-  project: default
+  project: {{ .Values.spec.project }}
   source:
     path: charts/istio-profile
     repoURL: https://github.com/hendrikmaus/argo-cd-app-of-apps

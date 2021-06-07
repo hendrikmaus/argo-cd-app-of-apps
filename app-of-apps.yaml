@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: default
+  project: some-cluster
   source:
     path: apps
     repoURL: https://github.com/hendrikmaus/argo-cd-app-of-apps
