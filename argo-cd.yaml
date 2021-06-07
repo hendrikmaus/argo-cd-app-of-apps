@@ -12,11 +12,6 @@ server:
   config:
     url: http://localhost:8085
 
-    repositories: |
-      - type: helm
-        url: https://charts.bitnami.com/bitnami
-        name: bitnami
-
     # restore application health assessment
     # see https://github.com/argoproj/argo-cd/issues/5146
     #     https://github.com/argoproj/argo-cd/pull/6281/files
