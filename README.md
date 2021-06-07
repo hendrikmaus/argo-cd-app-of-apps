@@ -1,4 +1,4 @@
-# Cluster Bootstrapping Experiment Using Argo CD, Apps-of-Apps and Sync Waves
+# Cluster Bootstrapping Experiment Using Argo CD, App-of-Apps and Sync Waves
 
 An experiment, running locally, to use the [App-of-Apps](https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/) pattern of Argo CD to provision a cluster (the same cluster in this case) while declaring dependencies between the apps using Sync Waves.
 
@@ -23,7 +23,7 @@ Run the experiment:
 just run
 ```
 
-> The `run` recipe is idompotent.
+> The `run` recipe is idempotent.
 
 Inspect the cluster.
 
@@ -35,7 +35,7 @@ just clean
 
 ## Known Issues
 
-The health assessement of the `Application` resource was removed from Argo CD and has to be re-enabled using the `ConfigMap`.
+The health assessment of the `Application` resource was removed from Argo CD and has to be re-enabled using the `ConfigMap`.
 
 See:
 
