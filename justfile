@@ -1,6 +1,7 @@
 _default:
   just --list --unsorted
 
+# The cluster name used within k3d
 cluster := "cluster-setup-experiment"
 
 # runs the complete experiment; call 'clean' afterwards for teardown
