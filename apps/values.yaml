@@ -1,7 +1,9 @@
 # Default values for apps
 
 ## Determine the order of rollout
-## The sync wave "-1" will be running before everything else
+## - The sync wave "-1" will be running before everything else
+## - Any wave can be used multiple times to combine apps
+## Docs: https://argoproj.github.io/argo-cd/user-guide/sync-waves/
 syncWaves:
   istioOperator: "0"
   istioProfile: "1"

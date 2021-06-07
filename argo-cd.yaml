@@ -1,10 +1,6 @@
 # Use helm3 compatible mode (needs --include-crds on helm template call)
 installCRDs: false
 
-global:
-  image:
-    tag: v2.0.1
-
 dex:
   enabled: false
 
@@ -14,11 +10,14 @@ server:
   ingress:
     enabled: true
   config:
+    url: http://localhost:8085
+
     repositories: |
       - type: helm
         url: https://charts.bitnami.com/bitnami
         name: bitnami
-    # restore application health assessement
+
+    # restore application health assessment
     # see https://github.com/argoproj/argo-cd/issues/5146
     #     https://github.com/argoproj/argo-cd/pull/6281/files
     resource.customizations: |
