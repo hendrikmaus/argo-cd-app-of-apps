@@ -4,7 +4,6 @@ kind: Simple
 name: cluster-setup-experiment
 servers: 1
 agents: 0
-image: docker.io/rancher/k3s:v1.20.6-k3s1
 ports:
   - port: 8085:80
     nodeFilters:
